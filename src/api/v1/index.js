@@ -1,10 +1,10 @@
 import express from 'express';
-import connectMongoDB from './database/mongo';
-import startMiddleware from './start/middleware';
-import startRoutes from './start/routes';
+import connectMongoDB from './infrac/database/index';
+import startMiddleware from './interfaces/start/middleware';
+import startRoutes from './interfaces/start/routes';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import startSocket from './start/socketIo';
+import startSocket from './interfaces/start/socketIo';
 import {createServer} from 'http';
 
 // Environment variables
