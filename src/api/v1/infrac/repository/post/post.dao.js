@@ -1,5 +1,5 @@
 import Post from "./post.do";
-
+import Image from "../image/image.do";
 export class PostDao {
     save = async (data) => {
         const post = new Post(data);
@@ -10,7 +10,20 @@ export class PostDao {
         return await Post.findById({ _id: _id });
     }
     findByAuthorId = async (authorId) => {
-        return await Post.findById({ authorId: authorId });
+        const posts = await Post.aggregate([
+            { "$addFields": { "postId": { "$toObjectId": "$_id" } } },
+            {
+                "$lookup":
+                {
+                    from: "images",
+                    localField: "postId",
+                    foreignField: "postId",
+                    as: "image"
+                }
+            }
+        ])
+        console.log(posts, authorId);
+        return posts.filter((item) => { return item.authorId === authorId });
     }
     updatePost = async (post) => {
         return await Post.findOneAndUpdate({ _id: post._id }, post);

@@ -1,4 +1,4 @@
-export default class QueryPostByAuthorId {
+export  class QueryPostByAuthorId {
     constructor(authorId) {
         this.authorId = authorId;
     }
