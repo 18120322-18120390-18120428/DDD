@@ -1,4 +1,3 @@
-
 export default class BookSchedule {
     constructor(id, isBooked) {
         this._id = id;

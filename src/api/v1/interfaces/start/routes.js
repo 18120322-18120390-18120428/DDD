@@ -1,12 +1,11 @@
-// import tutorRoutes from "../components/tutor/routes";
-// import userRoutes from "../components/users/routes";
+import userRoutes from "../../app/user/router";
 import scheduleRoutes from "../../app/schedule/routes";
 import bookingRoutes from "../../app/booking/routes";
 import verifyToken from "../middlewares/verifyToken";
+
 const startRoutes = (app) => {
   // routes
-  // app.use("/users", userRoutes);
-  // app.use("/tutors", tutorRoutes);
+  app.use("/user", userRoutes);
   app.use("/schedule", verifyToken, scheduleRoutes);
   app.use("/booking", verifyToken, bookingRoutes);
 

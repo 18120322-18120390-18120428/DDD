@@ -9,7 +9,7 @@ const scheduleReservationAvailability = async (req, res) => {
 
   try {
     for (let item of scheduleTime) {
-      let {time, interval} = item;
+      let { time, interval } = item;
       await Schedule.scheduleReservation(
         new CreateSchedule(tutorId, time, interval)
       );
