@@ -5,7 +5,7 @@ const generateUUID = (length = 1) => {
     const char = random.toString(32);
     resultArray.push(char);
   }
-  const resultString = resultArray.join('');
+  const resultString = resultArray.join("");
   return resultString;
 };
 

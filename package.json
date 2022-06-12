@@ -29,5 +29,8 @@
     "nodemailer": "^6.7.4",
     "nodemon": "^2.0.15",
     "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
   }
 }
