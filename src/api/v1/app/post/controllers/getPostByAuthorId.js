@@ -1,10 +1,14 @@
-import { Image } from "../../../domain/image/image.entity";
-import { QueryImageById } from "../../../domain/image/dto/queryImageById.dto";
+import { Post } from "../../../domain/post/post.entity";
+import { QueryPostByAuthorId } from "../../../domain/post/dto/queryPostByAuthorId.dto";
 import parseErrorIntoMessage from "../../../interfaces/helpers/parseErrorIntoMessage";
 
 const getPostByAuthorId = async (req, res) => {
     try {
-        res.status(200).send();
+        const { authorId } = req.query;
+        console.log(req.query)
+        const posts = await Post.getPostByAuthorId('121');
+        console.log(posts);
+        res.status(200).send(posts);
     } catch (error) {
         res.status(400).send(parseErrorIntoMessage(error));
     }

@@ -1,4 +1,4 @@
-export default class QueryPostById {
+export class QueryPostById {
     constructor(_id) {
         this._id = _id;
     }
