@@ -3,7 +3,7 @@
 import verifyToken from "../middlewares/verifyToken";
 import imageRoutes from "../../app/image/routes";
 import postRoutes from "../../app/post/routes";
-import userRoutes from "../../app/user/router";
+import userRoutes from "../../app/user/routes";
 const startRoutes = (app) => {
   // routes
   app.use("/post", postRoutes);

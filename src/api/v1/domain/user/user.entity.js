@@ -1,64 +1,28 @@
-import { UserDao } from "../../infrac/repository/user/user.dao";
-
-export class User {
-  constructor(id, name, email, password) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-
-  //   getTutor() {
-  //     //Lấy từ Domain tutor
-  //     // this.tutor =
-  //     this.tutor = {
-  //       name: "A",
-  //       email: "A@gmail.com",
-  //     };
-  //   }
-
-  static mappingFromUserRepository = async (userRepo) => {
-    const user = new User(
-      userRepo._id,
-      userRepo.name,
-      userRepo.email,
-      userRepo.password
-    );
-
-    return user;
-  };
-
-  static getUserById = async (_id) => {
-    try {
-      const userCollection = await new UserDao().findById(_id);
-      const user = User.mappingFromUserRepository(userCollection);
-      return user;
-    } catch (err) {
-      // Error handling logic should go here
-      throw new Error(`Get failed: ${err.message}`);
+export default class User {
+    constructor(id, email, password, name, isVerified, isActive, isDeleted, type, minutesPerDay, daysPerWeek, expiredTime) {
+        this._id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.isVerified = isVerified;
+        this.isActive = isActive;
+        this.isDeleted = isDeleted;
+        this.type = type;
+        this.minutesPerDay = minutesPerDay;
+        this.daysPerWeek = daysPerWeek;
+        this.expiredTime = expiredTime;
+        this.createdAt = undefined;
     }
-  };
 
-  static getUserCollections = async (queryCondition) => {
-    try {
-      const userCollections = await new UserDao().findByCondition(
-        queryCondition
-      );
+    static mappingFromUserRepository = (userRepo) => {
+        const user = new User();
 
-      return userCollections.map((user) =>
-        User.mappingFromUserRepository(user)
-      );
-    } catch (err) {
-      // Error handling logic should go here
-      throw new Error(`Get failed: ${err.message}`);
+        const keys = Object.keys(user);
+
+        keys.forEach(key => {
+            user[key] = userRepo[key];
+        })
+
+        return user;
     }
-  };
-
-  static userReservation = async (createUser) => {
-    try {
-      await new UserDao().save(createUser);
-    } catch (err) {
-      throw new Error("Schedule reservation failed: " + err.message);
-    }
-  };
 }
