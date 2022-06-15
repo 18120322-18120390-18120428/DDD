@@ -1,25 +1,64 @@
-import { User } from "../../../domain/user/user.entity";
-import { LoginUser } from "../../../domain/user/dto/loginUser.dto";
 import parseErrorIntoMessage from "../../../interfaces/helpers/parseErrorIntoMessage";
+import UserService from "../../../domain/user/user.service";
+import LoginByEmail from "../../../domain/user/dto/loginByEmail.dto";
 
 const login = async (req, res) => {
+  const { email, password } = req.body;
+  console.log(req.body);
   try {
-    //get Condition by tutor or startTime
-    const condition = whereCondition(req);
-    console.log(condition);
-    const data = await User.getUserById;
+    const loginByEmail = new LoginByEmail(email, password);
 
-    res.status(200).send(data);
+    const { accessToken,
+      refreshToken,
+      userFoundByEmail } = await UserService.loginByEmail(loginByEmail);
+    userFoundByEmail.password = 0;
+    res.cookie(process.env.REFRESH_TOKEN_KEY, refreshToken, {
+      httpOnly: true,
+      secure: false,
+      path: '/',
+      sameSite: 'strict',
+    });
+
+    res.status(200).send({
+      user: userFoundByEmail,
+      accessToken: accessToken,
+    });
+
   } catch (error) {
     res.status(400).send(parseErrorIntoMessage(error));
   }
 };
 
-const whereCondition = (req) => {
-  const { email, password } = req.query;
-  const condition = new LoginUser(email, password);
+// const login = async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const userFoundByEmail = await User.findOne({ email, isDeleted: false });
 
-  return condition;
-};
+//     if (!userFoundByEmail) {
+//       throw new Error('Email is incorrect');
+//     }
+
+//     if (await bcrypt.compare(password, userFoundByEmail.password)) {
+//       const { accessToken, refreshToken } =
+//         User.generateToken(userFoundByEmail);
+//       res.cookie(process.env.REFRESH_TOKEN_KEY, refreshToken, {
+//         httpOnly: true,
+//         secure: false,
+//         path: '/',
+//         sameSite: 'strict',
+//       });
+//       console.log(refreshToken);
+
+//       res.status(200).send({
+//         user: userFoundByEmail,
+//         accessToken: accessToken,
+//       });
+//     } else {
+//       throw new Error('Password is incorrect');
+//     }
+//   } catch (error) {
+//     res.status(400).send(parseErrorIntoMessage(error));
+//   }
+// };
 
 export default login;
