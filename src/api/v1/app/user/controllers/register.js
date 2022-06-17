@@ -4,7 +4,7 @@ import RegisterByEmail from "../../../domain/user/dto/registerByEmail.dto";
 
 const register = async (req, res) => {
   const { email, password, name } = req.body;
-  console.log(req.body, email)
+
   try {
     const registerByEmail = new RegisterByEmail(email, password, name);
     const newUser = await UserService.registerByEmail(registerByEmail);
