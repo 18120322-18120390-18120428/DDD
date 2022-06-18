@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -32,28 +31,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    secretOtp: {
-      type: String,
-    },
-    googleId: {
-      type: String,
-    },
-    facebookId: {
-      type: String,
-    },
     type: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
-    },
-    minutesPerDay: {
-      type: Number,
-    },
-    daysPerWeek: {
-      type: Number,
-    },
-    expiredTime: {
-      type: Date,
     },
   },
   {
@@ -64,9 +45,6 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.toJSON = function () {
   const userObject = this.toObject();
   delete userObject.password;
-  delete userObject.secretOtp;
-  delete userObject.googleId;
-  delete userObject.facebookId;
   return userObject;
 };
 
@@ -117,7 +95,10 @@ userSchema.pre("save", async function (next) {
   const user = this;
 
   if (user.isModified("password")) {
-    user.password = await bcrypt.hash(user.password, Number(process.env.ROUNDS));
+    user.password = await bcrypt.hash(
+      user.password,
+      Number(process.env.ROUNDS)
+    );
   }
   next();
 });

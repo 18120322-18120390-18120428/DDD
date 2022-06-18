@@ -1,14 +1,14 @@
-import express from 'express';
-import connectMongoDB from './infrac/database/index';
-import startMiddleware from './interfaces/start/middleware';
-import startRoutes from './interfaces/start/routes';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
-import startSocket from './interfaces/start/socketIo';
-import {createServer} from 'http';
+import express from "express";
+import connectMongoDB from "./infrac/database/index";
+import startMiddleware from "./interfaces/start/middleware";
+import startRoutes from "./interfaces/start/routes";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import startSocket from "./interfaces/start/socketIo";
+import { createServer } from "http";
 
 // Environment variables
-dotenv.config({ path: "./src/api/v1/configs/.env" });
+dotenv.config({ path: "./.env" });
 
 // Init Variables
 const app = express();
