@@ -6,7 +6,7 @@ const getPostByAuthorId = async (req, res) => {
     try {
         const { authorId } = req.query;
         console.log(req.query)
-        const posts = await Post.getPostByAuthorId('121');
+        const posts = await Post.getPostByAuthorId(authorId);
         console.log(posts);
         res.status(200).send(posts);
     } catch (error) {

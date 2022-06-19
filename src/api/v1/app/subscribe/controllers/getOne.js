@@ -3,7 +3,7 @@ import SubscribeService  from "../../../domain/subscribe/subscribe.service";
 import GetOne from "../../../domain/subscribe/dto/getOne.dto";
 
 const getOne = async (req, res) => {
-  const { subscriberId, idolId } = req;
+  const { subscriberId, idolId } = req.query;
 
   try {
     const getOne = new GetOne(subscriberId, idolId);

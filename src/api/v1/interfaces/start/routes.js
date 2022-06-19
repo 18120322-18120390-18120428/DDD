@@ -11,7 +11,7 @@ const startRoutes = (app) => {
   app.use("image", imageRoutes);
   app.use("/user", userRoutes);
   app.use("/wallet", walletRoutes);
-  app.use("subscribe", subscribeRoutes);
+  app.use("/subscribe", subscribeRoutes);
   //404
   app.use((req, res, next) => {
     const error = new Error("Not found");
