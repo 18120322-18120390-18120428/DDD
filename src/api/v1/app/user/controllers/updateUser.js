@@ -1,23 +1,18 @@
 import parseErrorIntoMessage from "../../../interfaces/helpers/parseErrorIntoMessage";
 import UserService from "../../../domain/user/user.service";
-import UpdateUser
- from "../../../domain/user/dto/updateUser.dto";
+import UpdateUser from "../../../domain/user/dto/updateUser.dto";
 const updateUser = async (req, res) => {
   try {
     const { _id, dataUpdate } = req.body;
-    const { fullname, password, isVerified, isActive, isDeleted } = dataUpdate;
+    const { fullName, password, nickName, job, amount } = dataUpdate;
 
-    const updateUser = new UpdateUser();
-    const keys = Object.keys(updateUser);
-
-    keys.forEach(key => {
-      if(dataUpdate.key == null) {
-        delete updateUser[key]; 
-      }
-      else {
-        updateUser[key] = dataUpdate.key;
-      }
-    })
+    const updateUser = new UpdateUser(
+      fullName,
+      password,
+      nickName,
+      job,
+      amount
+    );
 
     const updatedUser = await UserService.getOneByIdAndUpdate(_id, updateUser);
 

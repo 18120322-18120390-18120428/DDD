@@ -4,6 +4,7 @@ import login from "./login";
 import refreshToken from "./refreshToken";
 import register from "./register";
 import updateUser from "./updateUser";
+import searchUser from "./searchUser";
 
 export default {
   register,
@@ -12,4 +13,5 @@ export default {
   getInfo,
   getUsers,
   updateUser,
+  searchUser,
 };

@@ -15,7 +15,6 @@ export default class UserService {
         const getOneByEmail = new GetOneByEmail(email, false);
         userFoundByEmail = await UserService.getOne(getOneByEmail);
       } catch (error) {
-        console.log(error);
       } finally {
         if (userFoundByEmail) throw new Error("Email đã tồn tại");
       }
@@ -121,6 +120,17 @@ export default class UserService {
     } catch (err) {
       // Error handling logic should go here
       throw new Error(`Update User failed: ${err.message}`);
+    }
+  };
+
+  static searchUser = async (searchUser) => {
+    try {
+      const { query, number, page } = searchUser;
+      const listUsers = await new UserDao().search(query, number, page);
+
+      return listUsers.map((user) => User.mappingFromUserRepository(user));
+    } catch (error) {
+      throw new Error(`function searchUser - ${error}`);
     }
   };
 }

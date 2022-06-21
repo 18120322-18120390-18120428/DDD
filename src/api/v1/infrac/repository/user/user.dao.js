@@ -27,4 +27,12 @@ export default class UserDao {
 
     return updatedUser;
   };
+
+  search = async (query, number = 0, page = 0) => {
+    const searchUser = await User.find({ $text: { $search: query } })
+      .limit(number)
+      .skip(page);
+
+    return searchUser;
+  };
 }

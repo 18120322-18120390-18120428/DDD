@@ -11,6 +11,7 @@ userRoutes.get("/get-info", verifyToken, userControllers.getInfo);
 userRoutes.post("/register", userControllers.register);
 userRoutes.post("/login", userControllers.login);
 userRoutes.post("/refresh-token", userControllers.refreshToken);
+userRoutes.post("/search", userControllers.searchUser);
 
 //======================== PUT ========================
 userRoutes.put("/update", userControllers.updateUser);

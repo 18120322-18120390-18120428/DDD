@@ -8,11 +8,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
+      index: true,
     },
     email: {
       type: String,
       trim: true,
       required: true,
+      index: true,
     },
     password: {
       type: String,
@@ -35,6 +37,30 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user",
+    },
+    avatar: {
+      type: String,
+      default:
+        "https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png",
+    },
+    background: {
+      type: String,
+      default:
+        "https://thegavoice.com/wp-content/uploads/2021/08/103086051_2560258610969358_4012233441949789062_n.jpg",
+    },
+    nickName: {
+      type: String,
+      required: true,
+      index: true,
+    },
+    job: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    amount: {
+      type: Number,
+      default: 0,
     },
   },
   {
