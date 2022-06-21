@@ -1,5 +1,5 @@
 import parseErrorIntoMessage from "../../../interfaces/helpers/parseErrorIntoMessage";
-import Walletervice from "../../../domain/Wallet/Wallet.service";
+import WalletService from "../../../domain/Wallet/Wallet.service";
 import UpdateWallet from "../../../domain/Wallet/dto/updateWallet.dto";
 const updateWallet = async (req, res) => {
   try {
@@ -18,7 +18,7 @@ const updateWallet = async (req, res) => {
       }
     })
 
-    const updatedWallet = await Walletervice.getOneByIdAndUpdate(_id, updateWallet);
+    const updatedWallet = await WalletService.getOneByIdAndUpdate(_id, updateWallet);
 
     res.status(200).send(updatedWallet);
   } catch (error) {
