@@ -39,7 +39,8 @@ export default class WalletService {
 
     static getOneByIdAndUpdate = async (_id, updateWallet) => {
         try {
-            const updatedWallet = await new WalletDao().getOneAndUpdate({ _id }, updateWallet);
+            console.log(_id, updateWallet);
+            const updatedWallet = await new WalletDao().getOneAndUpdate({ holderId: _id }, updateWallet);
 
             return Wallet.mappingFromWalletRepository(updatedWallet);
         }
