@@ -3,7 +3,7 @@ import UserService from "../../../domain/wallet/wallet.service";
 import GetOneByHolderId from "../../../domain/wallet/dto/getOneByHolderId.dto";
 
 const getOneByHolderId = async (req, res) => {
-  const { holderId } = req;
+  const { holderId } = req.query;
 
   try {
     const getOneByHolderId = new GetOneByHolderId(holderId);
