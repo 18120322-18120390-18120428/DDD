@@ -7,10 +7,13 @@ export default class User {
     isVerified,
     isActive,
     isDeleted,
+    avatar,
+    background,
+    nickName,
     type,
-    minutesPerDay,
-    daysPerWeek,
-    expiredTime
+    job,
+    amount,
+    createdAt
   ) {
     this._id = id;
     this.email = email;
@@ -20,10 +23,13 @@ export default class User {
     this.isActive = isActive;
     this.isDeleted = isDeleted;
     this.type = type;
-    this.minutesPerDay = minutesPerDay;
-    this.daysPerWeek = daysPerWeek;
-    this.expiredTime = expiredTime;
-    this.createdAt = undefined;
+    this.avatar = avatar;
+    this.background = background;
+    this.nickName = nickName;
+    this.job = job;
+    this.amount = amount;
+
+    this.createdAt = createdAt;
   }
 
   static mappingFromUserRepository = (userRepo) => {

@@ -1,5 +1,5 @@
 import parseErrorIntoMessage from "../../../interfaces/helpers/parseErrorIntoMessage";
-import UserService  from "../../../domain/user/user.service";
+import UserService from "../../../domain/user/user.service";
 import GetOneById from "../../../domain/user/dto/getOneById.dto";
 
 const getInfo = async (req, res) => {
