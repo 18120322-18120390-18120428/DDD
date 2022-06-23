@@ -4,12 +4,14 @@ import getPostById from "./getPostById";
 import getPostByAuthorId from "./getPostByAuthorId";
 import deletePostById from "./deletePostById";
 import deletePostByAuthorId from "./deletePostByAuthorId";
+import getPostsByCondition from "./getPostsByCondition";
 
 export default {
-    createPost,
-    updatePost,
-    getPostById,
-    getPostByAuthorId,
-    deletePostById,
-    deletePostByAuthorId,
-}
+  createPost,
+  updatePost,
+  getPostById,
+  getPostByAuthorId,
+  getPostsByCondition,
+  deletePostById,
+  deletePostByAuthorId,
+};

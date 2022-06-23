@@ -27,6 +27,15 @@ export class Post {
             throw new Error(`Get failed: ${error.message}`);
         }
     }
+    static getPostsByCondition= async (getPostsByCondition) => {
+        try {
+            const { number, page, query } = getPostsByCondition;
+            const posts = await new PostDao().findByCondition(number, page, query);
+            return posts;
+        } catch (error) {
+            throw new Error(`Get failed: ${error.message}`);
+        }
+    }
     static createPost = async (data) => {
         try {
             const post = await new PostDao().save(data);
