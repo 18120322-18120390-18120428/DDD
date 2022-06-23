@@ -18,7 +18,6 @@ const updateUser = async (req, res) => {
 
     res.status(200).send(updatedUser);
   } catch (error) {
-    console.log(parseErrorIntoMessage(error));
     res.status(400).send(parseErrorIntoMessage(error));
   }
 };

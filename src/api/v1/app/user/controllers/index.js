@@ -5,6 +5,7 @@ import refreshToken from "./refreshToken";
 import register from "./register";
 import updateUser from "./updateUser";
 import searchUser from "./searchUser";
+import getUserByNickName from "./getUserByNickName";
 
 export default {
   register,
@@ -14,4 +15,5 @@ export default {
   getUsers,
   updateUser,
   searchUser,
+  getUserByNickName,
 };

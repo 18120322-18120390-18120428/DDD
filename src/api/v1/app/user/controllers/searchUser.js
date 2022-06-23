@@ -10,7 +10,7 @@ const searchUser = async (req, res) => {
 
     res.status(200).send(listUsersSearch);
   } catch (error) {
-    throw new Error(`function searchUser - ${error}`);
+    res.status(400).send(parseErrorIntoMessage(error));
   }
 };
 

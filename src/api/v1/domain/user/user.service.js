@@ -46,13 +46,10 @@ export default class UserService {
   static loginByEmail = async (loginByEmail) => {
     try {
       const { email, password } = loginByEmail;
-      console.log(loginByEmail);
       const getOneByEmail = new GetOneByEmail(email, false);
-      console.log(getOneByEmail);
       const userFoundByEmail = await UserService.getOne(getOneByEmail);
-      console.log(userFoundByEmail);
+
       if (userFoundByEmail == null) {
-        console.log("23");
         throw new Error("Email is incorrect");
       }
 
@@ -60,7 +57,7 @@ export default class UserService {
         password,
         userFoundByEmail.password
       );
-      console.log(isVerify, "23");
+
       if (isVerify) {
         const { accessToken, refreshToken } = generateToken(userFoundByEmail);
 
@@ -83,7 +80,7 @@ export default class UserService {
       const foundUser = await new UserDao().findOne(getOne);
 
       if (foundUser === null) {
-        throw new Error("User is not exist");
+        return null;
       }
 
       return User.mappingFromUserRepository(foundUser);
