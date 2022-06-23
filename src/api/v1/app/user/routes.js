@@ -6,6 +6,7 @@ const userRoutes = express.Router();
 //======================== GET ========================
 userRoutes.get("/get-all", userControllers.getUsers);
 userRoutes.get("/get-info", verifyToken, userControllers.getInfo);
+userRoutes.get("/get-user", userControllers.getUserByNickName);
 
 //======================== POST ========================
 userRoutes.post("/register", userControllers.register);
